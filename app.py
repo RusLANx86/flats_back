@@ -19,7 +19,13 @@ def check():
     else:
         session["session_count"] = session.get("session_count") + 1
         session["mail"] = f"{mail} {session['session_count']}"
-    return session["mail"]
+    return {'session': session["mail"]}
+
+
+@app.route('/clear')
+def clear():
+    session.clear()
+    return {'code': 'ok'}
 
 
 if __name__ == "__main__":
